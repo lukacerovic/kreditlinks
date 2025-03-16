@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 const Team = forwardRef((props, ref) => {
     return (
         <div ref={ref} className="flex pt-[15%] px-10">
-            <div style={{ color: "#181818" }} className="p-5">
+            <div style={{ color: "#181818" }} className="md:p-5">
                 <h1 className="text-5xl md:text-7xl text-[#ab9b82]">Naš Tim</h1>
                 <div className='flex flex-col justify-center md:flex-row md:justify-between '>
                     <div className="w-[100%] md:w-[60%]">

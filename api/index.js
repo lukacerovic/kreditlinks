@@ -95,7 +95,6 @@ app.post('/api/users', async (req, res) => {
     const newUser = new User({ username, lastName, email, dateOfBirth, phone, state, privacy });
     await newUser.save();
 
-    // Send email after user is created
     await sendEmail(req.body);
 
     res.status(201).json({ message: 'User created successfully', user: newUser });

@@ -6,7 +6,7 @@ const handleScrollTo = (ref) => {
 
 
 const HeroSection = ({contactRef}) => (
-    <section className="hero-section w-[95%] self-center h-[70vh] flex flex-col md:justify-end">
+    <section className="hero-section w-[95%] self-center h-[80vh] sm:h-[70vh] flex flex-col md:justify-end">
         <div className="md:w-[60%]">
             <div className="h-[70vh] flex flex-col justify-between md:justify-end" style={{padding: "2rem", gap:"3vw"}}>
                 <div style={{}}>

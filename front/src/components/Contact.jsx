@@ -127,7 +127,7 @@ const Contact = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="real-estate-section mt-[10vh] p-5 mx-5 flex justify-center" ref={ref}>
+    <div className="real-estate-section mt-[10vh] p-5 mx-2 md:mx-5 flex justify-center" ref={ref}>
       <form onSubmit={handleSubmit} className="search-form h-[inherit] md:h-[85vh] p-3 flex flex-col md:justify-between">
         <h3 className="text-2xl px-5">Kontaktirajte nas</h3>
         <p className="text-lg">Popunite formu i očekujte odgovor sa naše strane u najskorijem roku</p>
@@ -221,7 +221,7 @@ const Contact = forwardRef((props, ref) => {
             </a>
         </div>
 
-        <div style={{display: "flex", alignItems:"center", justifyContent:"space-between"}}>
+        <div className="flex flex-col gap-3 my-5 md:my-0 md:flex-row md:justify-between md:center">
           <div className='bg-[#293441] p-3 rounded border-2 border-[#ab9b82]'>
             <a
               href="opsti-uslovi-politika-privatnosti.pdf"

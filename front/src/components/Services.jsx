@@ -25,8 +25,8 @@ const Services = forwardRef((props, ref) => {
     };
 
     return (
-        <section ref={ref} className="services-container flex flex-col md:flex-row px-10 flex justify-center items-center">
-            <div className="services-titles pt-10 md:py-1 flex flex-col items-center md:items-start">
+        <section ref={ref} className="services-container md:h-[100vh] flex flex-col md:flex-row md:px-10 flex md:justify-center items-center">
+            <div className="services-titles pt-10 md:py-1 flex flex-col items-center justify-end md:items-start">
                 {services.map((service, index) => (
                     <div
                         key={index}
@@ -49,10 +49,10 @@ const Services = forwardRef((props, ref) => {
                 mousewheel={true}
                 modules={[Mousewheel, Pagination]}
                 onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                className="mySwiper"
+                className="mySwiper h-[70vh] sm:h-[50vh] md:h-[70%] md:w-[60%]"
             >
                 {services.map((service, index) => (
-                    <SwiperSlide key={index} style={{ alignSelf: "center" }}>
+                    <SwiperSlide key={index} style={{ alignSelf: "center w-screen md:w-[60%] md:p-[2%]" }}>
                         <p className={`${service.description.length > 150 ? "text-xl" : "text-2xl"} w-[80%]`}>{service.description}</p>
                     </SwiperSlide>
                 ))}
