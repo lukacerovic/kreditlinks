@@ -14,8 +14,7 @@ mongoose.connect(process.env.MONGO)
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:3001',
-  'http://localhost:3000',
+  'https://kreditlinks-lukacerovics-projects.vercel.app',
   'https://www.kreditlinks.com',
 ];
 
