@@ -16,7 +16,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:3000',
-  'https://www.KreditLinks.rs',
+  'https://www.kreditlinks.com',
 ];
 
 app.use(cors({
