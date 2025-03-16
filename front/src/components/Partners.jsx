@@ -1,10 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 
 const partnersLogo = [
-    "images/aik.png",
-    "images/inteza (1).png",
-    // "images/komercijalna (1).png",
-    "images/otp (1).png"
+    <img src="images/klGoldLogo.png" alt="partner" style={{ width: "100%", objectFit: "contain"}} />,
+    <p className="text-2xl text-[#e0e0e8]">Kredit Links</p>,
+    <img src="images/klGoldLogo.png" alt="partner" style={{ width: "100%", objectFit: "contain"}} />,
+    <p className="text-2xl text-[#e0e0e8]">Kredit Links</p>,
+    <img src="images/klGoldLogo.png" alt="partner" style={{ width: "100%", objectFit: "contain"}} />,
+    <p className="text-2xl text-[#e0e0e8]">Kredit Links</p>,
 ];
 
 export default function Partners() {
@@ -34,7 +36,9 @@ export default function Partners() {
         <div style={{
             overflow: "hidden",
             // backgroundColor: "#b6b5b5",
-            backgroundColor: "#a29595",
+            // backgroundColor: "#364662",
+            // backgroundColor: "#ab9b82",
+            backgroundColor: "#172230",
             padding: "10px",
             marginInline: "20px",
             display: "flex",
@@ -42,19 +46,18 @@ export default function Partners() {
         }} className="mt-20 rounded-2xl">
             <div ref={trackRef} style={{
                 display: "flex",
-                whiteSpace: "nowrap"
+                whiteSpace: "nowrap",
+                alignItems: "center",
             }}>
                 {[...partnersLogo, ...partnersLogo].map((partner, index) => (
                     <div key={index} style={{ 
-                        display: "inline-block", 
-                        width: "25vw", 
+                        display: "inline-block",
+                        alignItems:"center",
                         padding: "0 3%" 
-                    }}>
-                        <img src={partner} alt="partner" style={{ 
-                            width: "100%", 
-                            height: "100%", 
-                            objectFit: "contain" 
-                        }} />
+                    }}
+                    className="w-[40vw] md:w-[20vw]"
+                    >
+                        {partner}
                     </div>
                 ))}
             </div>

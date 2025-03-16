@@ -21,7 +21,8 @@
 }
 body {
   font-family: 'Satoshi', sans-serif;
-  background-color: #ededed;
+  background-color: #293441;
+  /* background-color: #ededed; */
 }
 .App {
   margin-bottom: 5vh;
@@ -31,35 +32,35 @@ h1 {
   font-weight: bold;
 }
 .header {
-  color: #333;;
+  color: #ededed;
   text-align: center;
 }
 .nav-list {
-  list-style: none; /* Ukloni standardne oznake liste */
-  padding: 0; /* Ukloni padding */
-  display: flex; /* Prikazi stavke u horizontalnom redu */
-  gap: 20px; /* Razmak između stavki */
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
 }
 
 .nav-list li {
-  position: relative; /* Omogućava da se pseudo-element pozicionira u odnosu na li */
-  cursor: pointer; /* Promeni pokazatelj kursora na pointer */
+  position: relative; 
+  cursor: pointer;
 }
 
 .nav-list li::after {
-  content: ""; /* Pseudo-element za liniju ispod teksta */
-  position: absolute; /* Pozicioniranje relativno na li */
-  left: 50%; /* Počni od centra */
-  bottom: -5px; /* Postavi malo ispod teksta */
-  width: 0; /* Početna širina linije */
-  height: 2px; /* Visina linije */
-  background-color: #6c2636; /* Boja linije */
-  transition: width 0.3s ease, left 0.3s ease; /* Animacija širine i pozicije */
+  content: ""; 
+  position: absolute; 
+  left: 50%; 
+  bottom: -5px; 
+  width: 0;
+  height: 2px;
+  background-color: #ab9b82;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 .nav-list li:hover::after {
-  width: 100%; /* Povećaj širinu na 100% pri hoveru */
-  left: 0; /* Pomeri na levo */
+  width: 100%; 
+  left: 0;
 }
 
 
@@ -72,7 +73,7 @@ h1 {
 
 .hero-section {
   position: relative;
-  background-image: url('../public/images/kontakt.jpeg');
+  background-image: url('../public/images/2.jpeg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -83,7 +84,6 @@ h1 {
   overflow: hidden;
 }
 
-/* Dodaj sivkasti sloj samo na deo sa slikom */
 .hero-section::before {
   content: "";
   position: absolute;
@@ -91,8 +91,8 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3); /* Siva boja sa 50% providnosti */
-  border-radius: 40px; /* Isti border-radius kao glavni element */
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 40px;
 }
 
 .hero-section * {
@@ -101,7 +101,7 @@ h1 {
 }
 
 .cta-button {
-  background-color: white;
+  background-color: #ab9b82;
   border: none;
   color: #000000;
   cursor: pointer;
@@ -111,7 +111,6 @@ h1 {
   background-color: #dcdcdc;
   border: 3px solid white;
 }
-
 
 
 
@@ -141,7 +140,7 @@ h1 {
 
 .swiper-slide {
   border-radius: 40px;
-  border: 3px solid white;
+  border: 3px solid #ab9b82;
   width:60%;
   display: flex;
   align-items: center;
@@ -157,20 +156,20 @@ h1 {
 
 .swiper-slide-active {
   width:100%;
-  background-color: #6c2636; /* Boja pozadine za aktivni slajd */
-  color: white;
+  background-color: #172230;
+  color: #ab9b82;
   opacity: 1;
   transform: scale(1);
 }
 
 .service-title {
-  color: #333;
+  color: #ededed;
   transition: color 0.3s ease;
-  position: relative; /* Dodaj ovu liniju */
+  position: relative; 
 }
 
 .service-title.active {
-  color: #000;
+  color: #ab9b82;
   font-weight: bold;
  
 }
@@ -187,7 +186,7 @@ h1 {
   bottom: -5px; 
   width: -10;
   height: 2px; 
-  background-color: #181818;
+  background-color: #dec587;
   transition: width 0.5s ease, left 0.5s ease; 
 }
 
@@ -195,10 +194,6 @@ h1 {
   width: 100%;
   left: 0;
 }
-
-
-
-
 
 
 
@@ -271,9 +266,10 @@ h1 {
 .search-button {
   width: 90%;
   padding: 10px;
-  background-color: #6c2636;
+  background-color: #dec587;
   border: none;
-  color: #fff;
+  color: #000;
+  font-weight: bold;
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
@@ -281,10 +277,9 @@ h1 {
 }
 
 .search-button:hover {
-  background-color: #ab485f;
+  background-color: #ddb44e;
 }
 
-/* Stilizacija za polja koja su jedno pored drugog */
 .form-field-row {
   display: flex;
   gap: 10px;

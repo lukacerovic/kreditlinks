@@ -1,70 +1,97 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import User from './models/user.model.js';
 
 dotenv.config();
 
-// Connect to MongoDB
 mongoose.connect(process.env.MONGO)
-  .then(() => {
-    console.log('Connected to Mongo DB');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err);
-  });
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 const app = express();
 
-// List of allowed origins
-const allowedOrigins = ['http://localhost:3001', 'http://localhost:3000', 'http://localhost:5173'];
+const allowedOrigins = [
+  'http://localhost:3001',
+  'http://localhost:3000',
+  'https://www.KreditLinks.rs',
+];
 
-// Dynamic CORS middleware
 app.use(cors({
   origin: (origin, callback) => {
-    console.log('Origin:', origin); // Debugging the origin
+    console.log('Origin:', origin);
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow the origin
+      callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS')); // Reject the origin
+      callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'OPTIONS'], // Ensure OPTIONS method is allowed
-  allowedHeaders: ['Content-Type'], // Allowed headers
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
 }));
 
-// Pre-flight OPTIONS request handler
 app.options('*', cors());
-
-// Parse JSON request bodies
 app.use(express.json());
 
-// Route to handle user form submissions
+
+const transporter = nodemailer.createTransport({
+  host: "smtpout.secureserver.net",
+  port: 465,
+  secure: true, 
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS, 
+  },
+});
+
+const sendEmail = async (userData) => {
+  const { username, lastName, email, dateOfBirth, phone, state } = userData;
+
+  console.log("data: ", userData);
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER, 
+    to: process.env.EMAIL_USER,  
+    subject: `KreditLinks - Novi korisnik: ${username} ${lastName}`,
+    text: `Novi korisnik: ${username} ${lastName}`,
+    html: `<h3>Novi korisnik:</h3>
+           <p><strong>Ime:</strong> ${username} ${lastName}</p>
+           <p><strong>Email:</strong> ${email}</p>
+           <p><strong>Telefon:</strong> ${phone}</p>
+           <p><strong>Opstina:</strong> ${state}</p>
+           <p><strong>Datum rođenja:</strong> ${dateOfBirth}</p>`,
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent:", info.messageId);
+  } catch (error) {
+    console.error('Greška pri slanju emaila:', error);
+  }
+};
+
 app.post('/api/users', async (req, res) => {
   try {
     const { username, lastName, email, dateOfBirth, phone, state, privacy } = req.body;
 
-    console.log(privacy)
-    if (!username || !lastName || !email || !dateOfBirth || !phone || !state) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
     const newUser = new User({ username, lastName, email, dateOfBirth, phone, state, privacy });
     await newUser.save();
-    res.status(201).json({ message: 'User created successfully', user: newUser });
 
+    await sendEmail(req.body);
+
+    res.status(201).json({ message: 'User created successfully', user: newUser });
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ message: 'Error creating user', error });
   }
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
-
 
 
 // import express from 'express';
