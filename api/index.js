@@ -12,6 +12,7 @@ const app = express();
 
 const allowedOrigins = [
   'https://kreditlinks-lukacerovics-projects.vercel.app',
+  'https://kreditlinks.vercel.app',
   'https://www.kreditlinks.com',
 ];
 
