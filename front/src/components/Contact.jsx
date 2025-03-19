@@ -1,8 +1,10 @@
 import React, { forwardRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import ErrorModal from './ErrorModal';
+import Loader from './Loader';
 
 const Contact = forwardRef((props, ref) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     privacy: false,
@@ -29,60 +31,70 @@ const Contact = forwardRef((props, ref) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setIsLoading(true);
+  
     if (!formData.username || !formData.lastName || !formData.email || !formData.phone || !formData.state) {
       setErrorMessage('Molimo Vas da popunite sva polja.');
       setIsErrorModalOpen(true);
+      setIsLoading(false); 
       return;
     }
-
+  
     const phoneRegex = /^(?:\+\d{1,3}\d{9}|0\d{9})$/;
     if (!phoneRegex.test(formData.phone)) {
       setErrorMessage('Telefon nije u validnom formatu');
       setIsErrorModalOpen(true);
+      setIsLoading(false);
       return;
     }
-
+  
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       setErrorMessage('Unesite validan email.');
       setIsErrorModalOpen(true);
+      setIsLoading(false);
       return;
     }
-
+  
     if (!formData.privacy) {
       setErrorMessage('Molimo Vas da pročitate i prihvatite politiku privatnosti.');
       setIsErrorModalOpen(true);
+      setIsLoading(false);
       return;
     }
+  
     try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });        
-        const result = await response.json();
-        console.log(result)
-        if (response.ok) {
-          setIsModalOpen(true);
-          setFormData({
-            username: '',
-            lastName: '',
-            email: '',
-            dateOfBirth: '',
-            phone: '',
-            state: '',
-            privacy: false,
-          });
-        } else {
-          setIsErrorModalOpen(true);
-        }
-      } catch (error) {
-        alert('Error submitting form');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+
+      if (response.ok) {
+        setIsModalOpen(true);
+        setFormData({
+          username: '',
+          lastName: '',
+          email: '',
+          dateOfBirth: '',
+          phone: '',
+          state: '',
+          privacy: false,
+        });
+      } else {
+        setIsErrorModalOpen(true);
       }
+    } catch (error) {
+      alert('Error submitting form');
+    }
+  
+    setIsLoading(false);
   };
+  
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -248,8 +260,8 @@ const Contact = forwardRef((props, ref) => {
             
         </div>
 
-        <button type="submit" className="search-button self-center mt-3">
-          Pošalji Formu
+        <button type="submit" className="search-button self-center mt-3" disabled={isLoading} style={isLoading ? { backgroundColor: "#172230"} : {}}>
+          {isLoading ? <Loader /> : 'Pošalji Formu'}
         </button>
       </form>
 
