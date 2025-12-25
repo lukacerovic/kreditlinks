@@ -52,12 +52,12 @@ connectMongoDB();
 
 
 const transporter = nodemailer.createTransport({
-  host: 'smtpout.secureserver.net',
-  port: 587,
-  secure: false,
+  host: 'smtp.sendgrid.net',
+  port: 465,         // SSL port
+  secure: true,      // SSL/TLS
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: 'apikey',                  // bukvalno string 'apikey'
+    pass: process.env.SENDGRID_API_KEY,
   },
 });
 
