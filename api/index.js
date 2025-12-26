@@ -1,21 +1,22 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import sgMail from '@sendgrid/mail';
 import User from './models/user.model.js';
 
 dotenv.config();
 
 const app = express();
 
-
+/* =========================
+   CORS
+========================= */
 const allowedOrigins = [
   'https://kreditlinks-lukacerovics-projects.vercel.app',
   'https://kreditlinks.vercel.app',
   'https://www.kreditlinks.com',
 ];
-
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -31,71 +32,71 @@ app.use(cors({
 }));
 
 app.options('*', cors());
-app.use(express.json()); 
+app.use(express.json());
 
-
+/* =========================
+   MongoDB
+========================= */
 const connectMongoDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000,
     });
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
-    process.exit(1); 
+    process.exit(1);
   }
 };
 
 connectMongoDB();
 
-
-const transporter = nodemailer.createTransport({
-  host: 'smtp.sendgrid.net',
-  port: 465,         // SSL port
-  secure: true,      // SSL/TLS
-  auth: {
-    user: 'apikey',                  // bukvalno string 'apikey'
-    pass: process.env.SENDGRID_API_KEY,
-  },
-});
-
+/* =========================
+   SendGrid
+========================= */
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendEmail = async (userData) => {
   const { username, lastName, email, dateOfBirth, phone, state } = userData;
 
-  console.log('Sending email with data: ', userData);
+  console.log('Sending email with SendGrid:', userData);
 
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+  const msg = {
+    to: 'office@kreditlinks.com',
+    from: 'luka.cerovic14@gmail.com', // VERIFIED sender
     subject: `KreditLinks - Novi korisnik: ${username} ${lastName}`,
-    text: `Novi korisnik: ${username} ${lastName}`,
-    html: `<h3>Novi korisnik:</h3>
-           <p><strong>Ime:</strong> ${username} ${lastName}</p>
-           <p><strong>Email:</strong> ${email}</p>
-           <p><strong>Telefon:</strong> ${phone}</p>
-           <p><strong>Opština:</strong> ${state}</p>
-           <p><strong>Datum rođenja:</strong> ${dateOfBirth}</p>`,
+    html: `
+      <h3>Novi korisnik</h3>
+      <p><strong>Ime:</strong> ${username} ${lastName}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Telefon:</strong> ${phone}</p>
+      <p><strong>Opština:</strong> ${state}</p>
+      <p><strong>Datum rođenja:</strong> ${dateOfBirth}</p>
+    `,
   };
 
-  try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.messageId);
-  } catch (error) {
-    console.error('Error sending email:', error);
-  }
+  await sgMail.send(msg);
+  console.log('✅ Email sent via SendGrid');
 };
 
-
+/* =========================
+   Routes
+========================= */
 app.post('/api/users', async (req, res) => {
   try {
     const { username, lastName, email, dateOfBirth, phone, state, privacy } = req.body;
 
-    const newUser = new User({ username, lastName, email, dateOfBirth, phone, state, privacy });
-    await newUser.save();
+    const newUser = new User({
+      username,
+      lastName,
+      email,
+      dateOfBirth,
+      phone,
+      state,
+      privacy,
+    });
 
+    await newUser.save();
     await sendEmail(req.body);
 
     res.status(201).json({ message: 'User created successfully', user: newUser });
@@ -105,7 +106,9 @@ app.post('/api/users', async (req, res) => {
   }
 });
 
-
+/* =========================
+   Server
+========================= */
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
