@@ -24,14 +24,34 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: '#000000',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f7f4ee' },
+    { media: '(prefers-color-scheme: dark)', color: '#070707' },
+  ],
   width: 'device-width',
   initialScale: 1,
 };
 
+const themeInitScript = `
+(function () {
+  try {
+    var t = localStorage.getItem('kl-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="sr" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         {children}
         <div id="modal" />

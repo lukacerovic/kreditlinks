@@ -14,16 +14,16 @@ const ErrorModal = ({ message, onClose }) => {
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="mx-4 w-full max-w-md rounded-2xl border border-red-400/20 bg-ink-800 p-7 shadow-2xl">
-        <h2 className="mb-3 text-xl font-semibold text-white">Greška prilikom slanja forme</h2>
-        <p className="text-sm leading-relaxed text-white/70">
+      <div className="mx-4 w-full max-w-md rounded-2xl border border-red-400/30 bg-surface p-7 shadow-2xl">
+        <h2 className="mb-3 text-xl font-semibold text-tx-1">Greška prilikom slanja forme</h2>
+        <p className="text-sm leading-relaxed text-tx-2">
           {message}
           <br /><br />
-          Hvala na razumevanju, Vaš <span className="font-semibold text-gold-400">Kredit Links</span>.
+          Hvala na razumevanju, Vaš <span className="font-semibold text-accent">Kredit Links</span>.
         </p>
         <button
           onClick={onClose}
-          className="mt-6 w-full rounded-full border border-white/10 bg-white/5 px-5 py-3 font-semibold text-white transition hover:bg-white/10"
+          className="mt-6 w-full rounded-full border border-line bg-surface-3 px-5 py-3 font-semibold text-tx-1 transition hover:border-line-strong"
         >
           Zatvori
         </button>

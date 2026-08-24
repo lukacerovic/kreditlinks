@@ -16,7 +16,7 @@ const CreditCards = () => (
       <div className="cc-strip" />
       <div className="flex items-center justify-between text-[11px] text-white/50">
         <span>**** **** **** 1208</span>
-        <span className="gold-text">VISA</span>
+        <span className="text-gold-400">VISA</span>
       </div>
     </div>
     <div className="cc cc-2">
@@ -35,9 +35,9 @@ const CreditCards = () => (
 );
 
 const Hero = ({ contactRef, servicesRef }) => (
-  <section className="relative mx-3 mt-3 overflow-hidden rounded-[28px] border border-white/5 bg-ink-900 sm:mx-5">
+  <section className="hero-shell relative mx-3 mt-3 overflow-hidden rounded-[28px] bg-surface-2 sm:mx-5">
     <div className="absolute inset-0 bg-hero-radial" />
-    <div className="relative grid gap-10 px-6 pt-12 pb-16 sm:px-10 md:grid-cols-[1.05fr_0.95fr] md:gap-6 md:pt-20 md:pb-24 lg:px-16">
+    <div className="relative mx-auto grid max-w-7xl gap-10 px-6 pt-12 pb-16 sm:px-10 md:grid-cols-[1.05fr_0.95fr] md:gap-6 md:pt-20 md:pb-24 lg:px-16">
       <div className="flex flex-col justify-center">
         <span className="section-pill mb-6 w-fit">Besplatne konsultacije</span>
         <h1 className="headline">

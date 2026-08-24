@@ -7,6 +7,22 @@ const config = {
   theme: {
     extend: {
       colors: {
+        paper: "var(--bg)",
+        surface: {
+          DEFAULT: "var(--surface)",
+          2: "var(--surface-2)",
+          3: "var(--surface-3)",
+        },
+        tx: {
+          1: "var(--text-1)",
+          2: "var(--text-2)",
+          3: "var(--text-3)",
+        },
+        line: {
+          DEFAULT: "var(--line)",
+          strong: "var(--line-strong)",
+        },
+        accent: "var(--accent)",
         ink: {
           950: "#070707",
           900: "#0c0c0d",
@@ -26,7 +42,7 @@ const config = {
         },
       },
       fontFamily: {
-        display: ["Satoshi-Light", "system-ui", "sans-serif"],
+        display: ["Satoshi", "Satoshi-Light", "system-ui", "sans-serif"],
       },
       boxShadow: {
         "gold-glow": "0 0 40px -8px rgba(212, 165, 87, 0.45)",

@@ -120,12 +120,12 @@ const Contact = forwardRef((_, ref) => {
 
     return ReactDOM.createPortal(
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-        <div className="mx-4 w-full max-w-md rounded-2xl border border-white/10 bg-ink-800 p-7 shadow-2xl">
-          <h2 className="mb-3 text-xl font-semibold text-white">Vaša forma je uspešno poslata!</h2>
-          <p className="text-sm leading-relaxed text-white/70">
+        <div className="mx-4 w-full max-w-md rounded-2xl border border-line bg-surface p-7 shadow-2xl">
+          <h2 className="mb-3 text-xl font-semibold text-tx-1">Vaša forma je uspešno poslata!</h2>
+          <p className="text-sm leading-relaxed text-tx-2">
             Hvala Vam na ostavljenim informacijama. Očekujte naš odgovor u najskorijem roku.
             <br /><br />
-            Srdačan pozdrav, Vaš <span className="font-semibold text-gold-400">Kredit Links</span>.
+            Srdačan pozdrav, Vaš <span className="font-semibold text-accent">Kredit Links</span>.
           </p>
           <button onClick={closeModal} className="btn-gold mt-6 w-full">Zatvori</button>
         </div>
@@ -135,7 +135,7 @@ const Contact = forwardRef((_, ref) => {
   };
 
   return (
-    <section ref={ref} className="mx-3 mt-24 sm:mx-5 md:mt-32">
+    <section ref={ref} className="mx-auto mt-24 w-full max-w-6xl px-3 sm:px-5 md:mt-32">
       <div className="kl-card relative overflow-hidden">
         <div className="absolute inset-0 bg-hero-radial opacity-70" />
         <div className="relative grid gap-10 p-6 sm:p-10 md:grid-cols-[0.9fr_1.1fr] lg:p-14">
@@ -153,10 +153,10 @@ const Contact = forwardRef((_, ref) => {
                 href="/opsti-uslovi-politika-privatnosti.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 text-sm text-white/85 transition hover:border-gold-400/40 hover:text-white"
+                className="group inline-flex items-center justify-between rounded-2xl border border-line bg-surface-3 px-5 py-4 text-base text-tx-1 transition hover:border-[color:var(--accent-border)]"
               >
                 <span className="flex items-center gap-3">
-                  <FiFileText className="text-gold-400" /> Opšti Uslovi Poslovanja
+                  <FiFileText className="text-accent" /> Opšti Uslovi Poslovanja
                 </span>
                 <FiArrowRight className="opacity-60 transition group-hover:translate-x-1" />
               </a>
@@ -164,17 +164,17 @@ const Contact = forwardRef((_, ref) => {
                 href="/anketniList.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 text-sm text-white/85 transition hover:border-gold-400/40 hover:text-white"
+                className="group inline-flex items-center justify-between rounded-2xl border border-line bg-surface-3 px-5 py-4 text-base text-tx-1 transition hover:border-[color:var(--accent-border)]"
               >
                 <span className="flex items-center gap-3">
-                  <FiFileText className="text-gold-400" /> Anketni List
+                  <FiFileText className="text-accent" /> Anketni List
                 </span>
                 <FiArrowRight className="opacity-60 transition group-hover:translate-x-1" />
               </a>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="rounded-3xl border border-white/8 bg-ink-900/70 p-6 sm:p-7 backdrop-blur">
+          <form onSubmit={handleSubmit} className="rounded-3xl border border-line bg-surface-2 p-6 sm:p-7 backdrop-blur">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="field">
                 <label>Ime</label>
@@ -245,13 +245,13 @@ const Contact = forwardRef((_, ref) => {
               </div>
             </div>
 
-            <label className="mt-5 flex items-center gap-3 text-xs text-white/70">
+            <label className="mt-5 flex items-center gap-3 text-xs text-tx-2">
               <input
                 type="checkbox"
                 name="privacy"
                 checked={formData.privacy}
                 onChange={handlePrivacyChange}
-                className="h-4 w-4 accent-gold-400"
+                className="h-5 w-5 accent-[var(--accent)]"
               />
               <span>
                 Prihvatam{' '}
@@ -259,7 +259,7 @@ const Contact = forwardRef((_, ref) => {
                   href="/opsti-uslovi-politika-privatnosti.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gold-400 underline-offset-2 hover:underline"
+                  className="text-accent underline-offset-2 hover:underline"
                 >
                   politiku privatnosti
                 </a>

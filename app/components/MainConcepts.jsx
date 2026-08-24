@@ -23,13 +23,13 @@ const concepts = [
 
 export default function MainConcepts() {
   return (
-    <section className="mx-3 mt-6 sm:mx-5">
+    <section className="mx-auto mt-6 w-full max-w-6xl px-3 sm:px-5">
       <div className="grid gap-4 md:grid-cols-3">
         {concepts.map((c) => (
           <div key={c.title} className="kl-card p-6 sm:p-7">
             <div className="kl-icon-square mb-5">{c.icon}</div>
-            <h3 className="text-xl font-semibold text-white">{c.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-white/65">{c.body}</p>
+            <h3 className="text-xl font-semibold text-tx-1 md:text-2xl">{c.title}</h3>
+            <p className="mt-3 text-base leading-relaxed text-tx-2">{c.body}</p>
           </div>
         ))}
       </div>

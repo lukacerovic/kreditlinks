@@ -42,13 +42,13 @@ const procedural = [
 const ServiceCard = ({ icon, title, body }) => (
   <div className="kl-card p-7 sm:p-8">
     <div className="kl-icon-square mb-5">{icon}</div>
-    <h3 className="text-xl font-semibold text-white sm:text-2xl">{title}</h3>
-    <p className="mt-3 text-sm leading-relaxed text-white/70">{body}</p>
+    <h3 className="text-xl font-semibold text-tx-1 sm:text-2xl">{title}</h3>
+    <p className="mt-3 text-base leading-relaxed text-tx-2">{body}</p>
   </div>
 );
 
 const Services = forwardRef((_, ref) => (
-  <section ref={ref} className="mx-3 mt-24 sm:mx-5 md:mt-32">
+  <section ref={ref} className="mx-auto mt-24 w-full max-w-6xl px-3 sm:px-5 md:mt-32">
     <div className="mx-auto max-w-3xl text-center">
       <span className="section-pill mb-5">Usluge</span>
       <h2 className="headline">
