@@ -8,6 +8,7 @@ import MainConcepts from './components/MainConcepts';
 import Team from './components/Team';
 import Partners from './components/Partners';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 export default function Home() {
   const servicesRef = useRef(null);
@@ -15,7 +16,7 @@ export default function Home() {
   const contactRef = useRef(null);
 
   return (
-    <main className="flex flex-col pb-16">
+    <main className="flex flex-col">
       <Header servicesRef={servicesRef} teamRef={teamRef} contactRef={contactRef} />
       <Hero contactRef={contactRef} servicesRef={servicesRef} />
       <MainConcepts />
@@ -25,6 +26,7 @@ export default function Home() {
       <Team ref={teamRef} />
       <Partners />
       <Contact ref={contactRef} />
+      <Footer />
     </main>
   );
 }

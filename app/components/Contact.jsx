@@ -241,6 +241,7 @@ const Contact = forwardRef((_, ref) => {
                   placeholder="+381 64 250 2283"
                   value={formData.phone}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
