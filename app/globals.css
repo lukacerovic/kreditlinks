@@ -419,3 +419,32 @@ section, main > div {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 999px;
 }
+
+@media (max-width: 640px) {
+  .cc-stack {
+    min-height: 300px;
+  }
+  .cc {
+    width: min(280px, 76%);
+    height: auto;
+    aspect-ratio: 8 / 5;
+  }
+  .cc-1 {
+    top: 6%;
+    left: 3%;
+    transform: rotate(-8deg);
+  }
+  .cc-2 {
+    top: 32%;
+    left: auto;
+    right: 3%;
+    transform: rotate(5deg);
+  }
+  .cc-coin {
+    bottom: 2%;
+    right: 6%;
+    width: 68px;
+    height: 68px;
+    font-size: 22px;
+  }
+}
