@@ -78,7 +78,7 @@ const Header = ({ servicesRef, teamRef, contactRef }) => {
                 className="dropdown absolute right-0 top-full mt-3 w-[300px] rounded-2xl border border-line bg-surface p-4 text-sm text-tx-2 shadow-card"
               >
                 <p className="mb-2 flex items-center gap-2"><MdOutlineMail className="text-accent" /> cerovicljiljana@gmail.com</p>
-                <p className="mb-2 flex items-center gap-2"><MdOutlineMail className="text-accent" /> kreditlinks@office.com</p>
+                <p className="mb-2 flex items-center gap-2"><MdOutlineMail className="text-accent" /> office@kreditlinks.com</p>
                 <p className="mb-2 flex items-center gap-2"><MdCall className="text-accent" /> +381 642502283</p>
                 <p className="mb-2 flex items-center gap-2"><PiCertificateDuotone className="text-accent" /> Matični broj: 67889134</p>
                 <p className="mb-2 flex items-center gap-2"><PiCertificateDuotone className="text-accent" /> PIB: 114834045</p>
@@ -153,10 +153,10 @@ const Header = ({ servicesRef, teamRef, contactRef }) => {
               <MdOutlineMail className="shrink-0 text-lg text-accent" /> cerovicljiljana@gmail.com
             </a>
             <a
-              href="mailto:kreditlinks@office.com"
+              href="mailto:office@kreditlinks.com"
               className="flex min-h-[48px] items-center gap-3 rounded-xl border border-line bg-surface-3 px-4 py-3 text-sm text-tx-1"
             >
-              <MdOutlineMail className="shrink-0 text-lg text-accent" /> kreditlinks@office.com
+              <MdOutlineMail className="shrink-0 text-lg text-accent" /> office@kreditlinks.com
             </a>
             <div className="flex min-h-[48px] items-center gap-3 rounded-xl border border-line bg-surface-3 px-4 py-3 text-sm text-tx-2">
               <FaLocationDot className="shrink-0 text-lg text-accent" /> Bulevar Heroja sa Košara 8, Beograd

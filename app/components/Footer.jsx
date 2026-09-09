@@ -26,8 +26,8 @@ const Footer = () => (
             <a href="mailto:cerovicljiljana@gmail.com" className="flex items-center gap-2 text-tx-2 transition hover:text-accent">
               <MdOutlineMail className="shrink-0 text-accent" /> cerovicljiljana@gmail.com
             </a>
-            <a href="mailto:kreditlinks@office.com" className="flex items-center gap-2 text-tx-2 transition hover:text-accent">
-              <MdOutlineMail className="shrink-0 text-accent" /> kreditlinks@office.com
+            <a href="mailto:office@kreditlinks.com" className="flex items-center gap-2 text-tx-2 transition hover:text-accent">
+              <MdOutlineMail className="shrink-0 text-accent" /> office@kreditlinks.com
             </a>
             <p className="flex items-center gap-2 text-tx-2">
               <FaLocationDot className="shrink-0 text-accent" /> Bulevar Heroja sa Košara 8, Beograd

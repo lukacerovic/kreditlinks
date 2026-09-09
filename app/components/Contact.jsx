@@ -36,6 +36,24 @@ const Contact = forwardRef((_, ref) => {
     setFormData({ ...formData, privacy: e.target.checked });
   };
 
+  const phoneRegex = /^(?:\+\d{1,3}\d{9}|0\d{9})$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  const areFieldsFilled = Boolean(
+    formData.username &&
+    formData.lastName &&
+    formData.dateOfBirth &&
+    formData.state &&
+    formData.email &&
+    formData.phone
+  );
+
+  const isFieldsValid = areFieldsFilled &&
+    phoneRegex.test(formData.phone) &&
+    emailRegex.test(formData.email);
+
+  const isFormValid = isFieldsValid && formData.privacy;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -47,7 +65,6 @@ const Contact = forwardRef((_, ref) => {
       return;
     }
 
-    const phoneRegex = /^(?:\+\d{1,3}\d{9}|0\d{9})$/;
     if (!phoneRegex.test(formData.phone)) {
       setErrorMessage('Telefon nije u validnom formatu');
       setIsErrorModalOpen(true);
@@ -55,7 +72,6 @@ const Contact = forwardRef((_, ref) => {
       return;
     }
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       setErrorMessage('Unesite validan email.');
       setIsErrorModalOpen(true);
@@ -246,13 +262,14 @@ const Contact = forwardRef((_, ref) => {
               </div>
             </div>
 
-            <label className="mt-5 flex items-center gap-3 text-xs text-tx-2">
+            <label className="mt-5 flex items-center gap-3 text-xs text-tx-2 has-[:disabled]:opacity-50">
               <input
                 type="checkbox"
                 name="privacy"
                 checked={formData.privacy}
                 onChange={handlePrivacyChange}
-                className="h-5 w-5 accent-[var(--accent)]"
+                disabled={!isFieldsValid}
+                className="h-5 w-5 accent-[var(--accent)] disabled:cursor-not-allowed"
               />
               <span>
                 Prihvatam{' '}
@@ -270,8 +287,8 @@ const Contact = forwardRef((_, ref) => {
 
             <button
               type="submit"
-              className="btn-gold mt-6 w-full"
-              disabled={isLoading}
+              className="btn-gold mt-6 w-full disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={isLoading || !isFormValid}
             >
               {isLoading ? <Loader /> : (<><FiSend /> Pošalji formu</>)}
             </button>
